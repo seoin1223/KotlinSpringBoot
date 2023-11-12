@@ -23,9 +23,15 @@ class GetApiController {
         return "request-mapping"
     }
 
-    @GetMapping("/get-mapping/path-variable/{name}") // GET http://localhost:8080/api/get-mapping/path-variable/seoin
-    fun pathVariable(@PathVariable name : String) : String {
-        println(name)
-        return name
+    @GetMapping("/get-mapping/path-variable/{name}/{age}") // GET http://localhost:8080/api/get-mapping/path-variable/seoin
+    fun pathVariable(@PathVariable name : String, @PathVariable age : Int) : String {
+        println("${name} , ${age}")
+        return name+" "+age
+    }
+    @GetMapping("/get-mapping/path-variable2/{name}/{age}") // GET http://localhost:8080/api/get-mapping/path-variable/seoin
+    fun pathVariable2(@PathVariable(value = "name") _name : String, @PathVariable(name ="age") age : Int) : String {
+        val name = "Kotlin"
+        println("${_name} , ${age}")
+        return _name+" "+age
     }
 }
