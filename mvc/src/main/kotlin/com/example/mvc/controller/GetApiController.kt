@@ -4,6 +4,7 @@ import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RequestMethod
+import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
 
 @RestController // REST API Controller 동작
@@ -33,5 +34,16 @@ class GetApiController {
         val name = "Kotlin"
         println("${_name} , ${age}")
         return _name+" "+age
+    }
+
+    // 쿼리 파라미터 사용
+    // http://localhost:8080/api/page?key=value&key=value&ley=value
+    @GetMapping("/get-mapping/query-param")
+    fun queryParam(
+        @RequestParam name: String,
+        @RequestParam(value = "age") age : Int
+    ) : String{
+        println("${name}, ${age}")
+        return name +" " + age
     }
 }
