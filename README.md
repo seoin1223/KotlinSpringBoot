@@ -106,6 +106,56 @@
      <image src ="https://github.com/Seoin-A/TestKotlinSpring/assets/129828463/bbf7d7ef-d695-4cf1-a969-4cbc5448db77" width ="50%" hight ="50%">
 
   
+
+## API
+### GET
+
+
+1. GetMapping 종류
+   - @RequestMapping(method =[RequestMethod.GET] , path=[ ]   
+     : requestMapping은 제약없이 get, post, put, delete 동작 가능   
+     : 따라서 method와 path로 제약을 줄 수 있음
+   - @GetMapping( )   
+     : Get만 동작   
+     : @GetMappint(path=["/abc" , "/def" ]) 와 같이 배열로 만들면 여러 개의 주소 할당 가능
+
+2. pathVariable
+   - url path와 pathVariable 변수 이름을 동일하게 할 경우
+    ```
+    @GetMapping("/get-mapping/path-variable/{name}/{age}")
+    fun pathVariable(@PathVariable name : String, @PathVariable age : Int){}
+    ```
+   - url path와 pathVariable 변수 이름을 다르게 할 경우
+    ```
+    @GetMapping("/get-mapping/path-variable/{name}/{age}")
+    fun pathVariable(@PathVariable(value= "name") lastName : String, @PathVariable(name = "age") lasgAge : Int){}
+    // value 나 name으로 변수명을 지정해준다
+    ```
+3. 쿼리 파라미터 사용
+   - url의 쿼리를 사용할 경우
+   ```
+    @GetMapping("/get-mapping/query-param") // ?name=seoin&age=27
+    fun queryParam(@RequestParam(name = "name") name: String,@RequestParam(value = "age") age : Int ) : String{}
+    ```
+   - 객체로 쿼리를 받을 경우
+    ```
+    @GetMapping("/get-mapping/query-param/object")
+      fun queryParamObject(userRequest: UserRequest): UserRequest {}
+  
+    data class UserRequest (
+        var name: String?=null,
+        var age:Int?=null,
+        var email:String?=null,
+        var address:String?=null )
+    ```
+   - Map으로 쿼리를 받을 경우
+    ```
+    @GetMapping("/get-mapping/query-param/map")
+    fun queryParamMap(@RequestParam map : Map<String,Any>): Map<String, Any> {}
+    ```
+
+
+   
   
   
   
