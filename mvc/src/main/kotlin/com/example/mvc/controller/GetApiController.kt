@@ -1,5 +1,6 @@
 package com.example.mvc.controller
 
+import com.example.mvc.model.http.UserRequest
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.RequestMapping
@@ -36,14 +37,21 @@ class GetApiController {
         return _name+" "+age
     }
 
-    // 쿼리 파라미터 사용
+    // 쿼리 파라미터 사용 (1)
     // http://localhost:8080/api/page?key=value&key=value&ley=value
-    @GetMapping("/get-mapping/query-param")
-    fun queryParam(
-        @RequestParam name: String,
-        @RequestParam(value = "age") age : Int
-    ) : String{
+    @GetMapping("/get-mapping/query-param") // ?name=seoin&age=27
+    fun queryParam(@RequestParam(name = "name") name: String,@RequestParam(value = "age") age : Int ) : String{
         println("${name}, ${age}")
         return name +" " + age
     }
+
+    // 쿼리 파라미터 사용 (2) -> 쿼리 파라미터가 3개 이상 될 경우 객체로 바로 맵핑 한다.
+    // name , age, email, address ...
+    @GetMapping("/get-mapping/query-param/object")
+    fun queryParamObject(userRequest: UserRequest): UserRequest {
+        println(userRequest)
+        return userRequest
+    }
+
+
 }
