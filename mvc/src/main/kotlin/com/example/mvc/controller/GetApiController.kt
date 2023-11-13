@@ -12,12 +12,6 @@ import org.springframework.web.bind.annotation.RestController
 @RequestMapping("/api") // http://localhost:8080/api
 class GetApiController {
 
-    @GetMapping("/hello") // GET만 동작 http://localhost:8080/api/hello
-    // @GetMapping(path = ["/hello","/abcd" ]) 배열로 만들면 여러 개의 주소를 할당 가능
-    fun hello(): String{
-        return "hello Kotlin"
-    }
-
     @RequestMapping(method = [RequestMethod.GET]  , path =["/request-mapping"])
     // 제한 없이 get, post, put, delete 다 동작 가능
     // 따라서 method 와 path로 제약을 가할 수 있음
@@ -25,6 +19,13 @@ class GetApiController {
         return "request-mapping"
     }
 
+    @GetMapping("/hello") // GET만 동작 http://localhost:8080/api/hello
+    // @GetMapping(path = ["/hello","/abcd" ]) 배열로 만들면 여러 개의 주소를 할당 가능
+    fun hello(): String{
+        return "hello Kotlin"
+    }
+
+    // passVariable 사용 방법
     @GetMapping("/get-mapping/path-variable/{name}/{age}") // GET http://localhost:8080/api/get-mapping/path-variable/seoin
     fun pathVariable(@PathVariable name : String, @PathVariable age : Int) : String {
         println("${name} , ${age}")
@@ -33,7 +34,7 @@ class GetApiController {
     @GetMapping("/get-mapping/path-variable2/{name}/{age}") // GET http://localhost:8080/api/get-mapping/path-variable/seoin
     fun pathVariable2(@PathVariable(value = "name") _name : String, @PathVariable(name ="age") age : Int) : String {
         val name = "Kotlin"
-        println("${_name} , ${age}")
+        println("${name} , ${age}")
         return _name+" "+age
     }
 
@@ -47,11 +48,22 @@ class GetApiController {
 
     // 쿼리 파라미터 사용 (2) -> 쿼리 파라미터가 3개 이상 될 경우 객체로 바로 맵핑 한다.
     // name , age, email, address ...
+    //  phoneNumber -> phone-number, phonenumber
     @GetMapping("/get-mapping/query-param/object")
     fun queryParamObject(userRequest: UserRequest): UserRequest {
         println(userRequest)
         return userRequest
     }
+
+    // 쿼리 파라미터 사용(1) -> "-"을 사용해야 하는 경우 map을 사용하는 것이 유리하다
+    @GetMapping("/get-mapping/query-param/map")
+    fun queryParamMap(@RequestParam map : Map<String,Any>): Map<String, Any> {
+        println(map)
+        val phoneNumber = map.get("phone-number")
+        println(phoneNumber)
+        return map
+    }
+
 
 
 }
