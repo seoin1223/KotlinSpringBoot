@@ -1,4 +1,4 @@
-package com.example.mvc.controller
+package com.example.mvc.controller.get
 
 import com.example.mvc.model.http.UserRequest
 import org.springframework.web.bind.annotation.GetMapping
