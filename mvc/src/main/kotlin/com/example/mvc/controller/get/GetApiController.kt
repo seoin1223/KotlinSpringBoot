@@ -16,7 +16,7 @@ class GetApiController {
     // 제한 없이 get, post, put, delete 다 동작 가능
     // 따라서 method 와 path로 제약을 가할 수 있음
     fun requestMapping(): String {
-        return "request-mapping"
+        return "request-mapping Get"
     }
 
     @GetMapping("/hello") // GET만 동작 http://localhost:8080/api/hello
