@@ -67,7 +67,7 @@ class PutApiController {
                 this.address = "b address"
             })
 
-            this.userRequest = userList
+            this.user = userList
         }
     }
 }
