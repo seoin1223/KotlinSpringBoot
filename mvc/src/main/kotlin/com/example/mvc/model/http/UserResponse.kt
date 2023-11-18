@@ -17,6 +17,7 @@ data class UserResponse (
 data class Result(
     var resultCode:String?=null, // resutl_code
     var resultMessage:String?=null // result_message
+
 )
 
 
