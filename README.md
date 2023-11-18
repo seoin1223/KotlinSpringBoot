@@ -280,9 +280,37 @@
     ```
 
 
-        
-           
+      
 
+# 최종 정리  
+## 공통
+- @RestController : RestAPI 설정
+- @RequestMapping : resource 설정 (method로 구분 가능)
+     
+## Get
+- @GetMapping : Get Resouce 설정
+- @RequestParam : URL Query Param Parsing
+- @PathVariable : URL Path Variable Parsing
+- Object : Query Param Object로 Parsing
+- Map : Query Param Map으로 Parsing
+
+## Post
+- @PostMapping : Post Resource 설정 
+- @RequestBody : Request Body 부분 Parsing
+- @PathVariable : URL Path Variable Parsing
+- @JsonProperty : json naming
+- @JsonNaming : class json naming
+
+## Put
+- @PutMapping : Put Resource 설정
+- @RequestBody : Request Body 부분 Parsing
+- @PathVariable : URL Path VAriable Parsing
+
+## Delete
+- @DeleteMapping : Delete Resource 설정
+- @RequestParam : URL Query Param Parsing
+- @PathVariable : URL Path Variable Parsing
+- Object : Query Param Object 로 Parsing
 
 
 
