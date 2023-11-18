@@ -30,6 +30,9 @@ class DeleteApiController {
     ): String {
         println(_name)
         println(_age)
+        println(_age)
+        println(_age)
+
         return _name+" "+_age
     }
 
