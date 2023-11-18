@@ -253,8 +253,9 @@
 
 
 ### DELETE   
+
+
    - Request Param
-   
    ```kotlin
     @DeleteMapping(path=["/delete-mapping"])
           fun deleteMapping(
@@ -265,23 +266,23 @@
               println(_age)
               return _name+" "+_age
           }
-    ```
-
+   ```
    - Path Variable
 
     ```kotlin
-    @DeleteMapping("/delete-mapping/name/{name}/age/{age}") // path variable은 대괄호로 묶어준다
-    fun deleteMappingPath(
-            @PathVariable(value = "name") _name: String,
-            @PathVariable(name = "age") _age: Int
-         ): String {
+     @DeleteMapping("/delete-mapping/name/{name}/age/{age}") // path variable은 대괄호로 묶어준다
+     fun deleteMappingPath(
+             @PathVariable(value = "name") _name: String,
+             @PathVariable(name = "age") _age: Int
+          ): String {
         println(_name)
         println(_age)
         return _name+" "+_age
-    }
-    ```
+     }
+     ```
 
 <br><br>
+      
       
 
 # 최종 정리  
