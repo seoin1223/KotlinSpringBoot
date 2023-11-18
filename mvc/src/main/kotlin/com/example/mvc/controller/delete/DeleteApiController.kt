@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController
 class DeleteApiController {
 
     // Query Param
+    // 1. request param
     @DeleteMapping(path=["/delete-mapping"])
     fun deleteMapping(
             @RequestParam(value = "name") _name : String,
@@ -22,7 +23,7 @@ class DeleteApiController {
     }
 
 
-    // 1. path variable
+    // 2. path variable
     @DeleteMapping("/delete-mapping/name/{name}/age/{age}") // path variable은 대괄호로 묶어준다
     fun deleteMappingPath(
             @PathVariable(value = "name") _name: String,
@@ -30,10 +31,9 @@ class DeleteApiController {
     ): String {
         println(_name)
         println(_age)
-        println(_age)
         return _name+" "+_age
     }
 
-    // 2. request param
+
 
 }

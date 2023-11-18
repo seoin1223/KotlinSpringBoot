@@ -83,16 +83,17 @@
 <br>
 
 ## HTTP
+
 1. HTTP  
      : RFC 2616에서 규정된 Web에서 데이터를 주고 받는 프로토콜  
      : TCP를 기반으로 한 REST의 특징을 모두 구현하고 있는 Web 기반의 프로토콜  
      : 메시지를 주고 받는 형태의 통신 방식
     
-     <image src="https://github.com/Seoin-A/TestKotlinSpring/assets/129828463/947f3598-b623-4d81-ba57-710233d78490" width="50%" hight="50%" >
+     <image src="https://github.com/Seoin-A/TestKotlinSpring/assets/129828463/947f3598-b623-4d81-ba57-710233d78490" width="50%" hight="50%"></image>
      
 2. HTTP Method
 
-   <image src="https://github.com/Seoin-A/TestKotlinSpring/assets/129828463/a22fe736-6e5a-4399-b626-631537cd7ac9" width ="70%" hight = "50^">
+   <image src="https://github.com/Seoin-A/TestKotlinSpring/assets/129828463/a22fe736-6e5a-4399-b626-631537cd7ac9" width ="70%" hight = "50^"></image>
 
 3. HTTP Status Code : 응답의 상태를 나타내는 코드 
    - 1XX : 처리중 -> 처리가 계속 되고 있는 상태, 쿨라이언트는 요청을 계속 하거나 서버의 지시에 따라서 재요청
@@ -100,62 +101,194 @@
    - 3XX : 리다이렉트 -> 다른 리소스로 리다이렉트, 해당 코드를 받았을 때는 Response의 새로운 주소로 다시 요청
    - 4XX : 클라이언트 에러 -> 클라이언트의 요청에 에러가 있는 상태, 재전송 하여도 에러가 해결되지 않음
    - 5XX : 서버 에러 -> 서버 처리 중 에러가 발생한 상태, 재전송시 에러가 해결되었을 수 있음
-     
+
    ***자주 사용되는 코드***
      
-     <image src ="https://github.com/Seoin-A/TestKotlinSpring/assets/129828463/bbf7d7ef-d695-4cf1-a969-4cbc5448db77" width ="50%" hight ="50%">
+     <image src ="https://github.com/Seoin-A/TestKotlinSpring/assets/129828463/bbf7d7ef-d695-4cf1-a969-4cbc5448db77" width ="50%" hight ="50%"></image>
 
   
 
-## API
+# API
 ### GET
 
 
-1. GetMapping 종류
+1. GetMapping 
    - @RequestMapping(method =[RequestMethod.GET] , path=[ ]   
-     : requestMapping은 제약없이 get, post, put, delete 동작 가능   
-     : 따라서 method와 path로 제약을 줄 수 있음
+     - requestMapping은 제약없이 get, post, put, delete 동작 가능   
+     - 따라서 method와 path로 제약을 줄 수 있음
+   
    - @GetMapping( )   
-     : Get만 동작   
-     : @GetMappint(path=["/abc" , "/def" ]) 와 같이 배열로 만들면 여러 개의 주소 할당 가능
+     - Get만 동작   
+     - @GetMappint(path=["/abc" , "/def" ]) 와 같이 배열로 만들면 여러 개의 주소 할당 가능
 
 2. pathVariable
    - url path와 pathVariable 변수 이름을 동일하게 할 경우
-    ```
-    @GetMapping("/get-mapping/path-variable/{name}/{age}")
-    fun pathVariable(@PathVariable name : String, @PathVariable age : Int){}
-    ```
+      ```kotlin
+      @GetMapping("/get-mapping/path-variable/{name}/{age}")
+      fun pathVariable(@PathVariable name : String, @PathVariable age : Int){}
+      ```
    - url path와 pathVariable 변수 이름을 다르게 할 경우
-    ```
-    @GetMapping("/get-mapping/path-variable/{name}/{age}")
-    fun pathVariable(@PathVariable(value= "name") lastName : String, @PathVariable(name = "age") lasgAge : Int){}
-    // value 나 name으로 변수명을 지정해준다
-    ```
+      ```kotlin
+      @GetMapping("/get-mapping/path-variable/{name}/{age}")
+      fun pathVariable(@PathVariable(value= "name") lastName : String, @PathVariable(name = "age") lasgAge : Int){}
+      // value 나 name으로 변수명을 지정해준다
+      ```
 3. 쿼리 파라미터 사용
    - url의 쿼리를 사용할 경우
-   ```
-    @GetMapping("/get-mapping/query-param") // ?name=seoin&age=27
-    fun queryParam(@RequestParam(name = "name") name: String,@RequestParam(value = "age") age : Int ) : String{}
-    ```
+     ```kotlin
+      @GetMapping("/get-mapping/query-param") // ?name=seoin&age=27
+      fun queryParam(@RequestParam(name = "name") name: String,@RequestParam(value = "age") age : Int ) : String{}
+      ```
    - 객체로 쿼리를 받을 경우
-    ```
-    @GetMapping("/get-mapping/query-param/object")
-      fun queryParamObject(userRequest: UserRequest): UserRequest {}
+      ```kotlin
+      @GetMapping("/get-mapping/query-param/object")
+        fun queryParamObject(userRequest: UserRequest): UserRequest {}
   
-    data class UserRequest (
-        var name: String?=null,
-        var age:Int?=null,
-        var email:String?=null,
-        var address:String?=null )
-    ```
+      data class UserRequest (
+          var name: String?=null,
+          var age:Int?=null,
+          var email:String?=null,
+          var address:String?=null )
+      ```
    - Map으로 쿼리를 받을 경우
-    ```
-    @GetMapping("/get-mapping/query-param/map")
-    fun queryParamMap(@RequestParam map : Map<String,Any>): Map<String, Any> {}
-    ```
-
+      ```kotlin
+      @GetMapping("/get-mapping/query-param/map")
+      fun queryParamMap(@RequestParam map : Map<String,Any>): Map<String, Any> {}
+      ```
+<br>
 
 ### POST
+1. PostMapping 
+    - RequestMapping(method = [RequestMethod], path = ["/request-mapping"])   
+        - requestMapping은 제약없이 get, post, put, delete 동작 가능   
+        - 따라서 method와 path로 제약을 줄 수 있음   
+
+    <br>
+   
+   - @PostMapping( )
+     - Post만 동작
+     - @PostMappint(path=["/abc" , "/def" ]) 와 같이 배열로 만들면 여러 개의 주소 할당 가능
+
+
+2. request body로 Data 받기 (Object mapper)
+    ```kotlin
+    @PostMapping("post-mapping/object)
+    fun postMappingObject(@RequestBody userRequest : UserRequest): UserRequest {
+        // json -> object로 바뀌어서 들어옴
+        println(userRequest)
+        
+        // object -> json 바뀌어서 return
+        return userRequest
+   } 
+    ```
+
+ 
+### PUT
+
+1. PutMapping
+    - @RequestMapping(method = [RequestMethod.PUT], path = ["/request-mapping"])
+    - @PutMapping()   
+
+<br>
+
+2. Request Body로 Data 넣기
+    ```kotlin
+    @PutMapping(path = ["/put-mapping/object"])
+    fun putMappingObject(@RequestBody userRequest: UserRequest): UserRequest {
+        return userRequest
+    }
+    ```
+  
+<br>
+
+3. Request에 대한 Response 생성 및 전송
+   ```kotlin
+    @PutMapping("/put-mapping/ex")
+    fun putMappingEx(@RequestBody userRequest: UserRequest) : UserResponse {
+    // 0. userResponse
+    return UserResponse().apply {
+    
+    // 1. result
+            this.result = Result().apply {
+                this.resultCode = "OK"
+                this.resultMessage = "성공"
+            }
+        }.apply {
+
+    // 2. description
+            this.description = "~~~~~~~~~"
+
+        }.apply {
+
+    // 3. user mutalbe list
+            val userList = mutableListOf<UserRequest>()
+
+            userList.add(userRequest)
+
+            userList.add(UserRequest().apply {
+                this.name = "a"
+                this.age = 10
+                this.email = "a@google.com"
+                this.phoneNumber = "010-1111-aaaa"
+                this.address = "a address"
+            })
+
+            userList.add(UserRequest().apply {
+                this.name = "b"
+                this.age = 10
+                this.email = "a@google.com"
+                this.phoneNumber = "010-1111-bbb"
+                this.address = "b address"
+            })
+
+            this.user = userList
+        }
+    }
+   ```
+    
+<br>
+
+
+
+4. DELETE   
+   - Request Param
+   
+   ```kotlin
+    @DeleteMapping(path=["/delete-mapping"])
+          fun deleteMapping(
+                  @RequestParam(value = "name") _name : String,
+                  @RequestParam(name = "age") _age : Int
+          ): String {
+              println(_name)
+              println(_age)
+              return _name+" "+_age
+          }
+    ```
+
+   - Path Variable
+
+    ```kotlin
+    @DeleteMapping("/delete-mapping/name/{name}/age/{age}") // path variable은 대괄호로 묶어준다
+    fun deleteMappingPath(
+            @PathVariable(value = "name") _name: String,
+            @PathVariable(name = "age") _age: Int
+         ): String {
+        println(_name)
+        println(_age)
+        return _name+" "+_age
+    }
+    ```
+
+
+        
+           
+
+
+
+
+
+
+
 
 
    
