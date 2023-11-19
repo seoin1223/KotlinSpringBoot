@@ -12,7 +12,7 @@
     - [PUT](#PUT)
     - [DELETE](#DELETE)
 7. [API 최종 정리](#최종-정리)
-
+8. [Rest API 응답 처리](#Rest-API-응답-처리)
 
 ## Kotlin
 - JVM 언어 : Java와 100% 호환
@@ -332,7 +332,7 @@
 
 
 
-# Rest API 응답처리
+# Rest API 응답 처리
 
 
 
