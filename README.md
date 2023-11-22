@@ -13,6 +13,7 @@
     - [DELETE](#DELETE)
 7. [API 최종 정리](#최종-정리)
 8. [Rest API 응답 처리](#Rest-API-응답-처리)
+9/ [Spring Boot 검증](#Spring-Boot-Validation)
 
 ## Kotlin
 - JVM 언어 : Java와 100% 호환
@@ -340,6 +341,9 @@
 - Object : 자동으로 Json 변환되어 응답 -> 상태값은 항상 200 OK
 - ResponseEntity : Body의 내용을 Object로 설정 -> 상황에 따라서 HttpStatus Code 설정
 - @ResponseBody : RestController가 아닌 (Controller)에서 Json응답을 내릴때
+
+
+# Spring Boot Validation
 
 
 
